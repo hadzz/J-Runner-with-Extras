@@ -590,7 +590,8 @@
             "nointmu",
             "nohdd",
             "nohdmiwait",
-            "nolan"});
+            "nolan",
+            "remapBootanim"});
             this.chkListBoxPatches.Location = new System.Drawing.Point(8, 9);
             this.chkListBoxPatches.Name = "chkListBoxPatches";
             this.chkListBoxPatches.Size = new System.Drawing.Size(83, 94);

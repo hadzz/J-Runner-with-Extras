@@ -11,7 +11,7 @@ namespace JRunner.Panels
     public partial class XeBuildPanel : UserControl
     {
         List<CB> cbList;
-        List<string> patches = new List<string>(new string[8]);
+        List<string> patches = new List<string>(new string[9]);
         // -a nofcrt
         // -a noSShdd
         // -a nointmu
@@ -19,6 +19,7 @@ namespace JRunner.Panels
         // -a nohdmiwait
         // -a nolan
         // -r WB/WB4G/13182
+        // 
 
         public XeBuildPanel()
         {
@@ -626,7 +627,7 @@ namespace JRunner.Panels
         private void chkListBoxPatches_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selected = chkListBoxPatches.SelectedIndex;
-            if (selected >= 0 && selected <= 5)
+            if (selected >= 0 && selected <= 6)
             {
                 if (chkListBoxPatches.GetItemChecked(selected))
                 {
@@ -637,6 +638,7 @@ namespace JRunner.Panels
                     else if (selected == 3) patches[selected + 1] = "-a nohdd";
                     else if (selected == 4) patches[selected + 1] = "-a nohdmiwait";
                     else if (selected == 5) patches[selected + 1] = "-a nolan";
+                    else if (selected == 6) patches[selected + 1] = "-a remap_bootanim_17559";
                 }
                 else
                 {
@@ -844,9 +846,9 @@ namespace JRunner.Panels
 
         private void updateWB()
         {
-            if (chkWB.Checked) patches[7] = "-r WB";
-            else if (chkWB4G.Checked) patches[7] = "-r WB4G";
-            else patches[7] = "";
+            if (chkWB.Checked) patches[8] = "-r WB";
+            else if (chkWB4G.Checked) patches[8] = "-r WB4G";
+            else patches[8] = "";
 
             updateCommand();
         }
@@ -1613,7 +1615,7 @@ namespace JRunner.Panels
         {
             if (erase)
             {
-                patches[7] = "";
+                patches[8] = "";
                 return;
             }
             if (wait) Thread.Sleep(100);
@@ -1686,8 +1688,8 @@ namespace JRunner.Panels
             if (comboCB.Items.Count > 0)
             {
                 CB c = (CB)comboCB.SelectedItem;
-                if (c.Patch) patches[7] = "-r " + c.Version;
-                else patches[7] = "";
+                if (c.Patch) patches[8] = "-r " + c.Version;
+                else patches[8] = "";
                 updateCommand();
             }
         }
